@@ -1,4 +1,4 @@
-package 算法.链表;
+package leetcode.链表;
 
 /**
  * @author:wuhao

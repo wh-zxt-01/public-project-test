@@ -1,4 +1,4 @@
-package 算法.树;
+package leetcode.树;
 
 /**
  * @Author: wh

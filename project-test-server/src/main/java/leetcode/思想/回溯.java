@@ -1,4 +1,4 @@
-package 算法.思想;
+package leetcode.思想;
 
 import org.junit.jupiter.api.Test;
 

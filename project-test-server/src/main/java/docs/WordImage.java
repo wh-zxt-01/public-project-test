@@ -46,10 +46,11 @@ public class WordImage {
             byte[] imageBytes = buffer.toByteArray();
 
             imageStream.close();
-
+            // 插入图片-使用 addPictureData 将图片数据添加到文档中。
             document.addPictureData(imageBytes, Document.PICTURE_TYPE_JPEG);
             int pictureIndex = document.getAllPictures().size() - 1;
             lastParagraph.setSpacingBefore(200);
+            // 使用 createRun().addPicture 将图片插入到段落中。
             lastParagraph.createRun().addPicture(
                     new ByteArrayInputStream(imageBytes),
                     Document.PICTURE_TYPE_JPEG,
@@ -57,10 +58,12 @@ public class WordImage {
                     Units.toEMU(100), // 图片宽度
                     Units.toEMU(150)  // 图片高度
             );
+            // 图片间距
             lastParagraph.createRun().addTab();
 
             imageCount++;
             if (imageCount % imagesPerLine == 0) {
+                // 换行-每插入三张图片后，创建一个新的段落，以实现换行效果。
                 lastParagraph = document.createParagraph();
             }
         }

@@ -1,10 +1,11 @@
-package 算法.图;
+package leetcode.picture;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * @author ldb
+ * @author wh
+ * 图
  * @date 2019-10-23 15:10
  */
 public class Graph {

@@ -1,4 +1,4 @@
-package 算法;
+package leetcode;
 
 /**
  * @author:wuhao
@@ -7,15 +7,15 @@ package 算法;
  */
 public class 排序 {
     public static void main(String[] args) {
-        // int[] a = {2, 1, 9, 3, 5, 0};
-        int[] a = {3, 6, 9, 2, 4, 8};
+        int[] a = {2, 1, 9, 3, 5, 0};
+        // int[] a = {2, 6, 9, 1, 3, 4};
         // 冒泡排序
         // bubbleSolt(a, 6);
         // 插入排序
-        insertSort(a, 6);
+        // insertSort(a, 6);
         // 选择排序
         // selectSort(a, 6);
-        // mergeSort(a, 0, a.length - 1);
+        mergeSort(a, 0, a.length - 1);
         // quickSort(a, 0, a.length - 1);
         for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
@@ -28,14 +28,34 @@ public class 排序 {
     public static void bubbleSolt(int[] a, int n) {
         if (n <= 1) return;
         for (int i = 0; i < n; i++) {
+            boolean swapped = false;
             for (int j = 0; j < n - i - 1; j++) {
                 if (a[j] > a[j + 1]) {
                     int temp = a[j];
                     a[j] = a[j + 1];
                     a[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            // 如果一次交换操作都没有进行，说明数组已经有序，可以提前终止算法
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+
+    public int[] sortArray(int[] nums) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    int temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
                 }
             }
         }
+        return nums;
     }
 
     /**
@@ -122,8 +142,7 @@ public class 排序 {
 
 
     /**
-     * 快速排序    2  1  9    3   5  0
-     *
+     * 快速排序    2  1  9    3   5  0   分治法 + 双指针分区。
      */
     public static void quickSort(int[] nums, int start, int end) { // 左闭右闭
         if (start >= end) { // 当数组中只有一个元素的时候终止
@@ -135,15 +154,18 @@ public class 排序 {
     }
 
     private static int partition(int[] a, int p, int r) {
-        // 选择最后一个数字作为支点
+        // 选择最后一个数字作为支点    6   11  3  9  8
         int pivot = a[r];
+        // i记录下一个可交换的位置，最终指向基准的正确位置。
         int i = p;
+        // j遍历数组，寻找小于基准的元素。因为 a[j] < pivot ,如果不满足，则 j++
         for (int j = p; j < r; j++) {
-            // 当出现 a[j] > pivot 的时候 ， i  并没有 ++ ， 所以会有 else
+            // 当出现 a[j] > pivot 的时候 ， 若 i == j，说明当前元素已在正确位置，只需移动 i。
             if (a[j] < pivot) {
                 if (i == j) {
                     ++i;
                 } else {
+                    //交换 a[i] 和 a[j]，将较小元素移动到左半部分。
                     int tmp = a[i];
                     a[i++] = a[j];
                     a[j] = tmp;
@@ -156,6 +178,5 @@ public class 排序 {
         a[r] = tmp;
         return i;
     }
-
 
 }
