@@ -1,7 +1,6 @@
-package 算法;
+package leetcode.链表;
 
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * @author:wuhao
@@ -124,7 +123,7 @@ public class AlgorithmTest链表 {
     }
 
     /**
-     * 链表中环的检测 - 哈希表 ， 访问的节点加入哈希表中 ，如果已经访问了 再访问就是环形链表
+     * 链表中环的检测 - 哈希表 ， 将整个链表加入到哈希表中 hashset 添加重复的节点时会返回false
      */
     public boolean hasCycle1(ListNode head) {
         HashSet<ListNode> listNodes = new HashSet<>();
@@ -167,6 +166,7 @@ public class AlgorithmTest链表 {
      * @return
      */
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+
         // 增加一个哨兵节点，便于合并链表，返回的时候直接 preHead.next 返回
         ListNode preHead = new ListNode(-1);
         ListNode prev = preHead;
